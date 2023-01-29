@@ -1,0 +1,855 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700,500,600,800");
+@import "styleguide.css";
+
+body {
+    font-family: Nunito;
+    background-color: #F8FAFE;
+}
+
+/* Common */
+
+i {
+    margin: auto 0;
+}
+
+.center {
+    margin: auto 0;
+}
+
+.module-2-body {
+    display: flex;
+}
+
+.right-body {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.base-bg-color {
+    background-color: #3476CE;
+}
+
+.row {
+    display: flex;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #3476CE;
+    min-width: 228px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 30px;
+    height: 230px;
+    right: -30px;
+    top: 45px;
+}
+
+.dropdown:hover {
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.user-details {
+    text-align: center;
+    padding: 5%;
+    color: white;
+}
+
+.user-type {
+    font-size: 32px;
+    margin: 0px;
+}
+
+.user-email {
+    font-size: 16px;
+    margin: 0px;
+}
+
+.edit-profile-btn, .logout-btn {
+    display: flex;
+    height: 28px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-profile-btn:hover, .logout-btn:hover {
+    cursor: pointer;
+    background:rgba(255,255,255, 0.1);
+}
+
+.edit-profile-btn > p, .logout-btn > p {
+    margin: 3px;
+    color: white;
+}
+
+.user-actions {
+    padding: 10px;
+}
+
+
+/* Navbar */
+nav {
+    position: fixed;
+    min-height: 100vh;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 325px;
+}
+
+nav > hr {
+    width: 121.48px;
+}
+
+.nav-menu {
+    padding: 5%;
+}
+
+.nav-item {
+    width: 95%;
+    border-radius: 50px;
+    padding: 1%;
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.nav-item:hover {
+    background-color: rgba(255,255,255, 0.3);
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-item > img {
+    padding-left: 5px;
+}
+
+.nav-item > p {
+    margin: 0px;
+    padding-top: 12px;
+    padding-left: 10px;
+    color: white;
+}
+
+.nav-icon {
+    width: 45px;
+}
+
+.logo {
+    text-align: center;
+    padding: 10% 10% 2% 10%;
+}
+
+.logo > .logo-small {
+    width: 45px;
+}
+
+.logo > .logo-word {
+    width: 110px;
+}
+
+.btn-collapse {
+    text-align: right;
+}
+
+.nav-component-toggle {
+    display: inline;
+}
+
+#close-nav:hover, #open-nav:hover {
+    cursor: pointer;
+}
+
+#open-nav {
+    display: none;
+}
+
+.btn-expand {
+    text-align: center;
+    margin: 0 auto;
+    display: none;
+}
+
+/* Main Content */
+
+/*
+.main-content {
+    margin-left: 60px;
+    padding: 2% 5%;
+    width: 80%;
+}
+*/
+
+
+.header {
+    margin-top: 10px;
+    width: 100%;
+    border-bottom: 5px solid #E9F2FF;
+}
+
+
+.page-title {
+    font-size: 20px;
+}
+.page-title > p {
+    margin: 20px;
+    font-weight: bold;
+}
+
+.page-title-header {
+    width: 77%;
+}
+
+.page-action {
+    width: 23%;
+    margin: 20px;
+}
+
+.page-action > div > p {
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+.page-action > div > div > p {
+    margin: 0 auto;
+}
+
+.user-icon {
+    margin-top: -13px;
+    padding-left: 20px;
+}
+
+.user-icon > img {
+    border: 5px solid #3476CE;
+    border-radius: 55%;
+    /* background-color: #1B3557; */
+}
+
+.arrow-down {
+    padding-left: 20px;
+}
+
+.user-session {
+    color: #3476CE;
+}
+
+.admin-bold {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* Module 2 Content */
+
+.module-content {
+    margin: 0 40px;
+
+}
+
+/*Information above tables*/
+.CIF-info {
+    width: 100%;
+    justify-content: space-between;
+    height: 80px;
+    margin-top: 30px;
+}
+
+.to-module1 {
+    font-size: 12px;
+}
+
+.to-module1 > p {
+    margin: 5px 20px;
+}
+
+.patient-name {
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.patient-name > p {
+    margin: 5px 20px;
+}
+
+.CIF-box {
+    border-radius: 10px;
+    border: 2px solid #3476CE;
+    height: 70px;
+    width: 200px;
+    display: flex;
+}
+
+.CIF-box > p {
+    font-size: 35px;
+    color: #3476CE;
+    font-weight: bold;
+    margin: auto;
+}
+
+.validation {
+    color: var(--sinagsuccess500);
+    display: flex;
+    flex-direction: column;
+}
+
+.validation-status {
+    font-size: 35px;
+    justify-content: flex-end;
+}
+
+.p1 {
+    margin: 0 0 0 20px;
+}
+
+.p2 {
+    font-size: 15px;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.tip-container {
+    width: 100%;
+    background-color: var(--sinagwarning100);
+    border-radius: 5px;
+    color: var(--sinagwarning500);
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.tip-container > p {
+    margin: 10px 0 10px 20px;
+}
+.tip-container > i {
+    margin-left: 20px;
+}
+
+.remark-container {
+    width: 100%;
+    background-color: var(--sinagsuccess100);
+    border-radius: 5px;
+    color: var(--sinagsuccess500);
+    margin-top: 20px;
+}
+
+.remark-header {
+    margin-left: 20px;
+}
+.remark-header > p {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.remark {
+    font-size: 15px;
+    padding: 0 60px;
+    margin: 0;
+    color: var(--sinaggrayscale900);
+}
+
+.date-time {
+    font-size: 12px;
+    margin: 15px 0 20px 23px;
+}
+
+.date-time > p {
+    margin-left: 25px;
+}
+
+/*Tables*/
+
+.header-table {
+    width: 100%;
+    background-color: #3476CE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px 1px 1px 0px #969696;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.header-table > i {
+    margin: auto 20px;
+}
+
+.investigation {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+}
+
+.divider {
+    width: 100%;
+    color: var(--sinaggrayscale500);
+}
+
+.philhealth-info {
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+
+}
+
+.patient-profile {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+
+}
+
+.permanent-address {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+
+}
+
+.current-address {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+button {
+    text-transform: uppercase;
+    font-family: Nunito;
+    height: 30px;
+}
+
+.clear-button:hover {
+    cursor: pointer;
+}
+
+.clear-button {
+    width: 100px;
+    color: #8D9198;
+    background-color: #FFFFFF;
+    border: 1.3px solid #8D9198;
+    border-radius: 5px;
+}
+
+.same-button {
+    background-color: #E2FAE8;
+    color: #146F2D;
+    border: 1.3px solid #146F2D;
+    border-radius: 5px;
+    width: 250px;
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
+.na-button {
+    background-color: #FFF5D8;
+    color: #BE9C34;
+    border: 1.3px solid #BE9C34;
+    border-radius: 5px;
+    width: 250px;
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
+.add-button1 {
+    width: 180px;
+    color: #3476CE;
+    background-color: #F8FAFE;
+    border: 1.3px solid #3476CE;
+    border-radius: 5px;
+}
+
+.add-button2 {
+    width: 180px;
+    color: #146F2D;
+    background-color: #E2FAE8;
+    border: 1.3px solid #146F2D;
+    border-radius: 5px;
+}
+
+.employer-details {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.travel-history {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.exposure-history {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.clinical-information {
+    width: 100%;
+    height: 800px; /*to be modified*/
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.specimen-information{
+    width: 100%;
+    min-height: 335px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.final-classification {
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+.outcome {
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0.5px 0.5px 1px 0px #969696;
+    margin-top: 30px;
+}
+
+/*
+.investigation-header {
+    width: 100%;
+    background-color: #3476CE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px 1px 1px 0px #969696;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.investigation-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+}
+.investigation-title {
+    font-weight: bold;
+    color: white;
+}*/
+
+/* .labels1 {
+    margin-top: 10px;
+    width: 900px;
+    display: flex;
+    justify-content: left;
+} */
+
+.input-fields-labels1, .input-fields-labels2, .input-fields-labels3 {
+    color: #3476CE;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 0;
+    position: relative;
+    text-align: left;
+}
+
+.labels1-div, .labels2-div, .labels3-div {
+    display: flex;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+#laboratory-number, #philhealth-number, #employer-name {
+    margin-right: 40px;
+    width: 400px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+}
+
+#dru-label, #testing-category, #occupation {
+    margin-right: 15px;
+    /*width: 280px;
+    height: 25px;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #A0C4F5;*/
+
+    box-sizing: border-box;
+
+    width: 400px;
+    height: 25px;
+
+    /* Sinag/B&W/100 */
+    background: #FFFFFF;
+    /* Sinag/Primary/100 */
+
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+}
+/*
+#laboratory-number {
+    width: 280px;
+    height: 25px;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #A0C4F5;
+}*/
+
+/*
+.input-fields-labels2 {
+    color: #3476CE;
+    font-size: 12px;
+    margin-top: 15px;
+    padding: 0;
+    position: relative;
+    text-align: left;
+}
+.labels2-div {
+    display: flex;
+    justify-content: center;
+    margin-left: 15px;
+}*/
+
+#investigator, #other-investigator, #date-of-interview
+ {
+    font-size: 12px;
+    margin-right: 12px;
+    width: 270px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+}
+
+#home-phone-number, #cellphone-number, #email,
+#employer-province, #country, #office-phone-number {
+    font-size: 12px;
+    margin-right: 12px;
+    width: 270px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+}
+
+/*
+#date-of-interview {
+    font-size: 12px;
+    margin-right: 12px;
+    width: 270px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.8);
+}*/
+
+/*
+.final_classification {
+    font-size: 12px;
+    width: 210px;
+    height: 25px;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #A0C4F5;
+    color: rgba(0, 0, 0, 0.8);
+}*/
+
+/*.search-btn-div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.search-btn {
+    background-color: #3476CE;
+    color: white;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    text-align: center;
+    border-radius: 5px;
+}
+.search-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+.patient-records-label {
+    margin-top: 30px;
+    font-size: 25px;
+    color: #3476CE;
+}*/
+
+#last-name, #first-name, #middle-name, #birthday, #age, #occupation,
+#barangay, #municipality, #province, #region,
+#place-of-work, #building-name, #street, #city {
+    font-size: 12px;
+    margin-right: 10px;
+    width: 210px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+}
+
+.civil_status-label, .sex-label {
+    color: #3476CE;
+}
+
+.civil_status, .sex {
+    font-size: 12px;
+    margin-right: 10px;
+    width: 210px;
+    height: 25px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.final_classification {
+    font-size: 12px;
+    width: 210px;
+    height: 25px;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #A0C4F5;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/* Specimen Info div */
+
+table {
+    border-collapse: collapse;
+}
+
+.specimen-infoTable {
+    width: 900px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.specimen-infoTable-header {
+    color: #3476CE;
+    font-size: 12px;
+    text-align: center;
+    /* height: 50px; */
+}
+
+tbody tr {
+    height: 60px;
+}
+
+td {
+    width: 150px;
+    /* justify-content: center; */
+    text-align: center;
+}
+
+.input_date {
+    width: 130px;
+    height: 20px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.time_hour, .time_min {
+    margin-top: 5px;
+    width: 63px;
+    height: 20px;
+    border: 1px solid #A0C4F5;
+    border-radius: 4px;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.first_pcr_result, .virus_isolation_result {
+    width: 130px;
+    height: 25px;
+    border-radius: 5px;
+    color: #8D9198;
+    border-color: #A0C4F5;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.checkbox_labels {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.specimen-collected {
+    text-align: left;
+}
+
+.save-button {
+    font-weight: 550;
+    background-color: #E2FAE8;
+    color: #146F2D;
+    border: 1.5px solid #146F2D;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    margin-left: 375px;
+    margin-top: 20px;
+}
+
+.condition_on_discharge {
+    margin-left: 20px;
+}
+
+.patient-status, .select {
+    margin-left: 10px;
+}
+
+.patient-status-TOD {
+    margin-left: 30px;
+}
+
+.date-of-discharge {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.name-of-informant, .relationship {
+    margin-right: 10px;
+}
+
+.name-of-informant, .relationship, .informant-phone-number {
+    margin-right: 10px;
+    width: 200px;
+}

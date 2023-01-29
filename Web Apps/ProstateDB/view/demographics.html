@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProstateDB: Demographics Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="../design/index.css">
+  <link rel="icon" href="../resources/clipboard2-heart.svg">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light bg-light navbar-expand-lg">
+    <a class="navbar-brand crlf" href="/">
+      <img src="../resources/clipboard2-heart.svg" width="30" height="30" class="d-inline-block align-top"
+        alt="Website Logo">
+      ProstateDB
+    </a>
+    <div class="navbar-expand" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link crlf" href="/">Home</a>
+        <a class="nav-item nav-link active crlf" href="/add-patient">Add</a>
+        <a class="nav-item nav-link crlf" href="/search">Search</a>
+        <a class="nav-item nav-link crlf" href="/count">Count</a>
+        <a class="nav-item nav-link log">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <!--Title Card-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Add Patient</h5>
+  </div>
+
+  <!--Demographics-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Demographics</h5>
+    <div class="card-body">
+      <div class="row" style="margin-bottom:5px">
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-firstname" aria-label="first name">
+            <label for="p1-firstname">First Name</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-lastname" aria-label="last name">
+            <label for="p1-lastname">Last Name</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-age" aria-label="age">
+            <label for="p1-age">Age</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:5px">
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-cityresidence" aria-label="city of residence">
+            <label for="p1-cityresidence">City of Residence</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-datediagnosis" aria-label="date of diagnosis">
+            <label for="p1-datediagnosis">Date of diagnosis (MM/DD/YYYY)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-datesurgery" aria-label="date of surgery">
+            <label for="p1-datesurgery">Date of surgery (MM/DD/YYYY)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-histopathresult" aria-label="histopath result">
+            <label for="p1-histopathresult">Histopath Result</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-gleason" aria-label="gleason score">
+            <label for="p1-gleason">Gleason Score</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-datetreatment" aria-label="date of treatment">
+            <label for="p1-datetreatment">Date of treatment (MM/DD/YYYY)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <select class="form-select slc" aria-label="select" id="p1-treatmenttype">
+              <option selected value="none"></option>
+              <option value="hormonal">Hormonal therapy</option>
+              <option value="radiation">Radiation therapy</option>
+              <option value="chemo">Chemotherapy</option>
+              <option value="others">Others</option>
+            </select>
+            <label for="p1-treatmenttype">Treatment Type</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Physical Examination-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Physical Examination</h5>
+    <div class="card-body">
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-ecog" aria-label="ecog score">
+            <label for="p1-ecog">ECOG score</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-ht" aria-label="height">
+            <label for="p1-ht">Height (in cm)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-wt" aria-label="weight">
+            <label for="p1-wt">Weight (in kg)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-bmi" aria-label="weight" disabled>
+            <label for="p1-bmi">BMI</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-bp" aria-label="blood pressure">
+            <label for="p1-bp">Blood Pressure (Systolic/Diastolic)</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-hr" aria-label="heart rate">
+            <label for="p1-hr">Heart Rate</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-painscore" aria-label="pain score">
+            <label for="p1-painscore">Pain Score</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-localsymptoms" aria-label="local symptoms">
+            <label for="p1-localsymptoms">Local Symptoms</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="text" class="form-control slc" id="p1-systemicsymptoms" aria-label="systemic symptoms">
+            <label for="p1-systemicsymptoms">Systemic Symptoms</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Screening: Laboratory-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Screening: Laboratory</h5>
+    <div class="card-body">
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-psa" aria-label="psa">
+            <label for="p1-psa">Prostate-Specific Antigen Levels</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-creatinine" aria-label="creatinine">
+            <label for="p1-creatinine">Creatinine</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-wbc" aria-label="wbc">
+            <label for="p1-wbc">White Blood Cell Count</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-rbc" aria-label="rbc">
+            <label for="p1-rbc">Red Blood Cell Count</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-hemoglobin" aria-label="hemoglobin">
+            <label for="p1-hemoglobin">Hemoglobin Level</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-hematocrit" aria-label="hematocrit">
+            <label for="p1-hematocrit">Hematocrit Level</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-platelet" aria-label="platelet count">
+            <label for="p1-platelet">Platelet Count</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-lactate" aria-label="lactate">
+            <label for="p1-lactate">Lactate dehydrogenase Level</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-alkaline" aria-label="alkaline">
+            <label for="p1-alkaline">Alkaline phosphatase Level</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">
+            <input type="number" min="0" class="form-control slc" id="p1-sgpt" aria-label="sgpt, sgot, bilirubins">
+            <label for="p1-sgpt">SGPT, SGOT, Bilirubin Level</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Screening: Imaging-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Screening: Imaging</h5>
+    <div class="card-body">
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="card" style="padding:0px">
+            <div class="card-header">Salivary Gland</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="salivary-option" id="sg-normal" value="normal">
+                <label class="form-check-label" for="sg-normal">Normal</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="salivary-option" id="sg-obstructed"
+                  value="obstructed">
+                <label class="form-check-label" for="sg-obstructed">Obstructed</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col sg-opt-obs" style="display:none;">
+          <div class="card" style="padding:0px">
+            <div class="card-header">Obstruction Position</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input slc" type="checkbox" id="sg-obs-left" value="left">
+                <label class="form-check-label" for="sg-obs-left">Left</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input slc" type="checkbox" id="sg-obs-right" value="right">
+                <label class="form-check-label" for="sg-obs-right">Right</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <select class="form-select slc" aria-label="select renal scintigraphy" id="p1-renalscintigraphy">
+              <option selected value="none"></option>
+              <option value="mag3">MAG3</option>
+              <option value="dtpa">DTPA</option>
+            </select>
+            <label for="p1-renalscintigraphy">Renal Scintigraphy</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="card" style="padding:0px">
+            <div class="card-header">Bone Metastasis</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="metastasis-option" id="bm-no" value="no">
+                <label class="form-check-label" for="bm-no">No Metastasis</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="metastasis-option" id="bm-with" value="with">
+                <label class="form-check-label" for="bm-with">With Metastases</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col bm-opt-obs" style="display:none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">&nbsp;</div>
+            <div class="card-body">
+              <div class="form-floating">
+                <input type="text" class="form-control slc" id="p1-metastasisloc" aria-label="metastasis location">
+                <label for="p1-metastasisloc">Metastasis Location</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Ga-68/F-18 PSMA</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-option" id="la-ga" value="ga68">
+                <label class="form-check-label" for="la-ga">Ga-68</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-option" id="la-f18" value="f18">
+                <label class="form-check-label" for="la-f18">F-18 PSMA</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-option" id="la-none" value="none">
+                <label class="form-check-label" for="la-none">None</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Prostate Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-prostate" id="la-pros-absent"
+                  value="la-pros-absent">
+                <label class="form-check-label" for="la-pros-absent">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-prostate" id="la-pros-present"
+                  value="la-pros-present">
+                <label class="form-check-label" for="la-pros-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-pros-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Prostate Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-pros-location"
+                      aria-label="prostate lesion location">
+                    <label for="lesiona-pros-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-pros-suv"
+                      aria-label="prostate lesion suv">
+                    <label for="lesiona-pros-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-pros-measurement"
+                      aria-label="prostate lesion measurement">
+                    <label for="lesiona-pros-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lymph Node Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-lymph" id="la-lymph-absent"
+                  value="la-lymph-absent">
+                <label class="form-check-label" for="la-lymph-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-lymph" id="la-lymph-present"
+                  value="la-lymph-present">
+                <label class="form-check-label" for="la-lymph-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-lymph-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lymph Node Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-lymph-location"
+                      aria-label="lymph nodes lesion location">
+                    <label for="lesiona-lymph-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-lymph-suv"
+                      aria-label="lymph nodes lesion suv">
+                    <label for="lesiona-lymph-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-lymph-measurement"
+                      aria-label="lymph nodes lesion measurement">
+                    <label for="lesiona-lymph-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Bone Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-bone" id="la-bone-absent"
+                  value="la-bone-absent">
+                <label class="form-check-label" for="la-bone-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-bone" id="la-bone-present"
+                  value="la-bone-present">
+                <label class="form-check-label" for="la-bone-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-bone-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Bone Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-bone-location"
+                      aria-label="bone lesion location">
+                    <label for="lesiona-bone-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-bone-suv"
+                      aria-label="bone lesion suv">
+                    <label for="lesiona-bone-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-bone-measurement"
+                      aria-label="bone lesion measurement">
+                    <label for="lesiona-bone-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Brain Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-brain" id="la-brain-absent"
+                  value="la-brain-absent">
+                <label class="form-check-label" for="la-brain-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-brain" id="la-brain-present"
+                  value="la-brain-present">
+                <label class="form-check-label" for="la-brain-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-brain-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Brain Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-brain-location"
+                      aria-label="brain lesion location">
+                    <label for="lesiona-brain-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-brain-suv"
+                      aria-label="brain lesion suv">
+                    <label for="lesiona-brain-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-brain-measurement"
+                      aria-label="brain lesion measurement">
+                    <label for="lesiona-brain-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lungs Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-lung" id="la-lung-absent"
+                  value="la-lung-absent">
+                <label class="form-check-label" for="la-lung-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-lung" id="la-lung-present"
+                  value="la-lung-present">
+                <label class="form-check-label" for="la-lung-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-lung-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lungs Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-lung-location"
+                      aria-label="lung lesion location">
+                    <label for="lesiona-lung-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-lung-suv"
+                      aria-label="lung lesion suv">
+                    <label for="lesiona-lung-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-lung-measurement"
+                      aria-label="lung lesion measurement">
+                    <label for="lesiona-lung-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Liver Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-liver" id="la-liver-absent"
+                  value="la-liver-absent">
+                <label class="form-check-label" for="la-liver-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-liver" id="la-liver-present"
+                  value="la-liver-present">
+                <label class="form-check-label" for="la-liver-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-liver-opt-obs" style="display: none;"> 
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Liver Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-liver-location"
+                      aria-label="liver lesion location">
+                    <label for="lesiona-liver-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-liver-suv"
+                      aria-label="liver lesion suv">
+                    <label for="lesiona-liver-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-liver-measurement"
+                      aria-label="liver lesion measurement">
+                    <label for="lesiona-liver-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gaf-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Other Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-other" id="la-other-absent"
+                  value="la-other-absent">
+                <label class="form-check-label" for="la-other-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesiona-other" id="la-other-present"
+                  value="la-other-present">
+                <label class="form-check-label" for="la-other-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col la-other-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Other Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesiona-other-location"
+                      aria-label="other lesion location">
+                    <label for="lesiona-other-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-other-suv"
+                      aria-label="other lesion suv">
+                    <label for="lesiona-other-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesiona-other-measurement"
+                      aria-label="other lesion measurement">
+                    <label for="lesiona-other-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">FDG PET/CT</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-option" id="lb-fdg" value="fdg">
+                <label class="form-check-label" for="lb-fdg">FDG PET/CT</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-option" id="lb-none" value="none">
+                <label class="form-check-label" for="lb-none">None</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Prostate Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-prostate" id="lb-pros-absent"
+                  value="lb-pros-absent">
+                <label class="form-check-label" for="lb-pros-absent">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-prostate" id="lb-pros-present"
+                  value="lb-pros-present">
+                <label class="form-check-label" for="lb-pros-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-pros-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Prostate Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-pros-location"
+                      aria-label="prostate lesion location">
+                    <label for="lesionb-pros-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-pros-suv"
+                      aria-label="prostate lesion suv">
+                    <label for="lesionb-pros-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-pros-measurement"
+                      aria-label="prostate lesion measurement">
+                    <label for="lesionb-pros-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lymph Node Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-lymph" id="lb-lymph-absent"
+                  value="lb-lymph-absent">
+                <label class="form-check-label" for="lb-lymph-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-lymph" id="lb-lymph-present"
+                  value="lb-lymph-present">
+                <label class="form-check-label" for="lb-lymph-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-lymph-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lymph Node Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-lymph-location"
+                      aria-label="lymph nodes lesion location">
+                    <label for="lesionb-lymph-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-lymph-suv"
+                      aria-label="lymph nodes lesion suv">
+                    <label for="lesionb-lymph-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-lymph-measurement"
+                      aria-label="lymph nodes lesion measurement">
+                    <label for="lesionb-lymph-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Bone Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-bone" id="lb-bone-absent"
+                  value="lb-bone-absent">
+                <label class="form-check-label" for="lb-bone-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-bone" id="lb-bone-present"
+                  value="lb-bone-present">
+                <label class="form-check-label" for="lb-bone-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-bone-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Bone Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-bone-location"
+                      aria-label="bone lesion location">
+                    <label for="lesionb-bone-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-bone-suv"
+                      aria-label="bone lesion suv">
+                    <label for="lesionb-bone-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-bone-measurement"
+                      aria-label="bone lesion measurement">
+                    <label for="lesionb-bone-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Brain Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-brain" id="lb-brain-absent"
+                  value="lb-brain-absent">
+                <label class="form-check-label" for="lb-brain-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-brain" id="lb-brain-present"
+                  value="lb-brain-present">
+                <label class="form-check-label" for="lb-brain-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-brain-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Brain Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-brain-location"
+                      aria-label="brain lesion location">
+                    <label for="lesionb-brain-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-brain-suv"
+                      aria-label="brain lesion suv">
+                    <label for="lesionb-brain-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-brain-measurement"
+                      aria-label="brain lesion measurement">
+                    <label for="lesionb-brain-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lungs Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-lung" id="lb-lung-absent"
+                  value="lb-lung-absent">
+                <label class="form-check-label" for="lb-lung-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-lung" id="lb-lung-present"
+                  value="lb-lung-present">
+                <label class="form-check-label" for="lb-lung-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-lung-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Lungs Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-lung-location"
+                      aria-label="lung lesion location">
+                    <label for="lesionb-lung-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-lung-suv"
+                      aria-label="lung lesion suv">
+                    <label for="lesionb-lung-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-lung-measurement"
+                      aria-label="lung lesion measurement">
+                    <label for="lesionb-lung-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Liver Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-liver" id="lb-liver-absent"
+                  value="lb-liver-absent">
+                <label class="form-check-label" for="lb-liver-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-liver" id="lb-liver-present"
+                  value="lb-liver-present">
+                <label class="form-check-label" for="lb-liver-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-liver-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Liver Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-liver-location"
+                      aria-label="liver lesion location">
+                    <label for="lesionb-liver-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-liver-suv"
+                      aria-label="liver lesion suv">
+                    <label for="lesionb-liver-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-liver-measurement"
+                      aria-label="liver lesion measurement">
+                    <label for="lesionb-liver-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row fdg-opt-obs" style="margin-bottom: 5px; display: none;">
+        <div class="col">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Other Lesion</div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-other" id="lb-other-absent"
+                  value="lb-other-absent">
+                <label class="form-check-label" for="lb-other-present">Absent</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lesionb-other" id="lb-other-present"
+                  value="lb-other-present">
+                <label class="form-check-label" for="lb-other-present">Present</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col lb-other-opt-obs" style="display: none;">
+          <div class="card" style="padding: 0px;">
+            <div class="card-header">Other Lesion Information</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control slc" id="lesionb-other-location"
+                      aria-label="other lesion location">
+                    <label for="lesionb-other-location">Location</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-other-suv"
+                      aria-label="other lesion suv">
+                    <label for="lesionb-other-suv">SUV</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="number" min="0" class="form-control slc" id="lesionb-other-measurement"
+                      aria-label="other lesion measurement">
+                    <label for="lesionb-other-measurement">Measurement (in cm)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--Assessment/Plan-->
+  <div class="card" style="margin:10px">
+    <h5 class="card-header">Assessment and Plan</h5>
+    <div class="card-body">
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <select class="form-select slc" aria-label="select risk" id="p1-assessment">
+              <option selected value="none"></option>
+              <option value="low">Low Risk</option>
+              <option value="intermediate">Intermediate Risk</option>
+              <option value="high">High Risk</option>
+            </select>
+            <label for="p1-assessment">Assessment</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col">
+          <div class="form-floating">
+            <textarea class="form-control slc" id="p1-plan"></textarea>
+            <label for="p1-plan">Plan</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--Submit-->
+  <div class="card text-center" style="margin:10px">
+    <div class="card-body">
+      <a class="btn btn-outline-secondary mb-3" id="submit-info">Submit</a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+<script src="../scripts/demographics.js"></script>
+<script src="../scripts/log-loader.js"></script>
+<script src="../scripts/nav-bar.js"></script>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MenuController">
+   <children>
+      <Label layoutX="267.0" layoutY="32.0" text="STATE TABLE GENERATOR" textAlignment="CENTER">
+         <font>
+            <Font name="MS Outlook" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="128.0" text="Number of Flip Flop">
+         <font>
+            <Font name="MS Outlook" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="93.0" text="Type of Flip Flop">
+         <font>
+            <Font name="MS Outlook" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="215.0" text="Number of Input Variables">
+         <font>
+            <Font name="MS Outlook" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="249.0" text="Number of Output Variables">
+         <font>
+            <Font name="MS Outlook" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="ffType" layoutX="248.0" layoutY="89.0" prefWidth="80.0" />
+      <ChoiceBox fx:id="numFF" layoutX="248.0" layoutY="124.0" prefWidth="80.0" />
+      <ChoiceBox fx:id="numIV" layoutX="248.0" layoutY="211.0" prefWidth="80.0" />
+      <ChoiceBox fx:id="numOV" layoutX="248.0" layoutY="244.0" prefHeight="26.0" prefWidth="80.0" />
+      <Button fx:id="proceedButton" layoutX="313.0" layoutY="333.0" mnemonicParsing="false" onAction="#proceedToTable" prefHeight="34.0" prefWidth="101.0" text="Proceed">
+         <font>
+            <Font name="MS Outlook" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="StateVar1" disable="true" layoutX="364.0" layoutY="89.0" visible="false" />
+      <TextField fx:id="FlipFlop1" disable="true" layoutX="364.0" layoutY="124.0" visible="false" />
+      <TextField fx:id="StateVar2" disable="true" layoutX="559.0" layoutY="89.0" visible="false" />
+      <TextField fx:id="FlipFlop2" disable="true" layoutX="559.0" layoutY="124.0" visible="false" />
+      <TextField fx:id="FlipFlop4" disable="true" layoutX="559.0" layoutY="175.0" visible="false" />
+      <TextField fx:id="FlipFlop3" disable="true" layoutX="364.0" layoutY="175.0" visible="false" />
+      <TextField fx:id="InputVar1" disable="true" layoutX="364.0" layoutY="211.0" visible="false" />
+      <TextField fx:id="InputVar2" disable="true" layoutX="559.0" layoutY="211.0" visible="false" />
+      <TextField fx:id="OutputVar" disable="true" layoutX="364.0" layoutY="244.0" visible="false" />
+      <TextField fx:id="OutputEq" disable="true" layoutX="559.0" layoutY="244.0" visible="false" />
+      <Button fx:id="setButton" layoutX="254.0" layoutY="294.0" mnemonicParsing="false" onAction="#selectionMade" prefHeight="26.0" prefWidth="68.0" text="Set">
+         <font>
+            <Font name="MS Outlook" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="resetButton" layoutX="330.0" layoutY="294.0" mnemonicParsing="false" onAction="#resetAll" prefHeight="26.0" prefWidth="68.0" text="Reset All">
+         <font>
+            <Font name="MS Outlook" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="guideButton" layoutX="405.0" layoutY="294.0" mnemonicParsing="false" onAction="#guide" prefHeight="26.0" prefWidth="68.0" text="Guide">
+         <font>
+            <Font name="MS Outlook" size="12.0" />
+         </font>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

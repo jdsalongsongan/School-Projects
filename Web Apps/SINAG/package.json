@@ -1,0 +1,26 @@
+{
+  "name": "test-1",
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "body-parser": "^1.20.1",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "express.js": "^1.0.0",
+    "json2xls": "^0.1.2",
+    "knex": "^2.3.0",
+    "moment": "^2.29.4",
+    "nodemon": "^2.0.20",
+    "papaparse": "^5.3.2",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.8.0"
+  },
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "jdsalongsongan <jdsalongsongan@up.edu.ph>",
+  "license": "MIT",
+  "description": "",
+  "scripts": {
+    "dev": "nodemon server.js"
+  }
+}

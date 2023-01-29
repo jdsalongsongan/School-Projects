@@ -1,0 +1,93 @@
+#root {
+  max-width: 1280px;
+
+  padding: 2rem;
+}
+
+.tquan{
+  visibility: hidden;
+}
+
+table{
+  border-collapse: collapse;
+  margin: 5px;
+}
+
+th, td{
+  border: 1px solid black;
+  min-width: 86px;
+  max-width: 86px;
+  padding: 5px;
+
+  text-align: center;
+}
+
+.numInp{
+  min-width: 76px;
+  max-width: 76px;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-child{
+  flex: 1;
+ 
+  
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
+
+.containers{
+  height: 100%;
+
+  max-height: 665px;
+  min-height: 665px;
+  overflow-y: auto;
+  border: 1px solid black;
+}
+
+.lcontainer{
+  width: 500px;
+  min-width: 500px;
+  padding: 5px;
+}
+
+.rcontainer{
+  width: 100%;
+  min-width: 800px;
+  padding: 5px;
+}
+
+.gannt{
+  max-width: 800px;
+  padding: 2px;
+  overflow-x: auto;
+  border: 1px black solid;
+}
+
+.bounds{
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  text-align: right;
+  padding: 10px;
+}
+
+.process-names{
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+.bounds, .process-names, .blank{
+  padding: 0px;
+  min-width: none;
+  
+}
+
+.blank{
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
