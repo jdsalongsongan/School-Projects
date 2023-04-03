@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sudoku</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#board :input").prop("disabled", true);
+                $("#check").click(function(){
+                    $("#check").html("Generate New Board");
+                    generateBoard();
+                });
+                $(":input").on("input", function () {
+                    var allowed = $(this).val().replace(/[^1-9]/g,'');
+                    $(this).val(allowed);
+                    if(allowed > 9){
+                        $(this).val('');
+                    }
+                    var done = checkboard();
+                    if(done == true){
+                        var success = checkSuccess();
+                        if(success == true) alert("You Win!");
+                        else alert("You Lose");
+                    }
+                });
+            });
+
+            /*Generates the Sudoku board*/
+            function generateBoard(){
+                let vals = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                /*determines the first line*/
+                vals = vals.sort(() => Math.random() - 0.5);
+                var board = $('#board')[0];
+                for(var i = 0, row; row = board.rows[i]; i++){
+                    for(var j = 0, col; col = row.cells[j]; j++){
+                        board.rows[i].cells[j].childNodes[0].value = vals[j]; 
+                    }
+                    /*making the board look "random" by shifting the numbers*/
+                    if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7){
+                        let g = vals.pop();
+                        vals.unshift(g);
+                        g = vals.pop();
+                        vals.unshift(g);
+                        g = vals.pop();
+                        vals.unshift(g);
+                    }
+                    else if(i == 2 || i == 5){
+                        let g = vals.pop();
+                        vals.unshift(g);
+                        g = vals.pop();
+                        vals.unshift(g);
+                        g = vals.pop();
+                        vals.unshift(g);
+                        g = vals.pop();
+                        vals.unshift(g);
+                    }
+                }
+                /*poking holes, will only leave 17 - 26 clues*/
+                let holes = rng(55, 64);
+                //console.log(holes);
+                for(var i = 0; i < holes; i++){
+                    let j = Math.floor(Math.random() * 9);
+                    let k = Math.floor(Math.random() * 9);
+                    if(board.rows[j].cells[k].childNodes[0].value != ''){
+                        board.rows[j].cells[k].childNodes[0].disabled = false;
+                        board.rows[j].cells[k].childNodes[0].value = '';
+                    }
+                    else{
+                        holes++;
+                    }
+                }
+            }
+            /*Generates a random number from a given range, inclusive*/
+            function rng(min, max){
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+             /*checks if everything is filled*/
+            function checkboard(){
+                var filled = 0;
+                var board = $('#board')[0];
+                for(var i = 0, row; row = board.rows[i]; i++){
+                    for(var j = 0, col; col = row.cells[j]; j++){
+                        if(board.rows[i].cells[j].childNodes[0].value == '') break;
+                        else filled++;
+                    }
+                }
+                if(filled == 81) return true;
+                else return false;
+            }
+            /*checks if the sudoku board is filled up correctly*/
+            function checkSuccess() {
+                var board = $('#board')[0];
+                for(var i = 0, row; row = board.rows[i]; i++){
+                    for(var j = 0, col; col = row.cells[j]; j++){
+                        var cur = board.rows[i].cells[j].childNodes[0].value;
+                        for(var k = 0; k < 9; k++){
+                            if(i != k){
+                                var cmp = board.rows[k].cells[j].childNodes[0].value;
+                                if(cur == cmp) return false;
+                            }
+                        }
+                        for(var l = 0; l < 9 ; l++){
+                            if(j != l){
+                                var cmp2 = board.rows[i].cells[l].childNodes[0].value;
+                                if(cur == cmp2) return false;
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+        </script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <style>
+        body{
+            text-align: center;
+        }
+        * {
+            box-sizing: border-box; 
+        }
+        table {
+            margin: 10px;
+        }
+        tr:first-child td {
+	        border-top-color: black;
+        }
+        tr:nth-child(3n) td {
+	        border-bottom-color: black;
+        }
+        td {
+	        border: 1px solid lightgrey;
+	        height: 40px;
+	        width: 40px;
+        }
+        td:first-child {
+	        border-left-color: black;
+        }
+        td:nth-child(3n) {
+	        border-right-color: black;
+        }
+        input {
+	        padding: 0;
+	        text-align: center;
+	        border: 0;
+	        height: 40px;
+	        width: 40px;
+	        text-align: center;
+        }
+
+        input:hover {
+	        background: #ffffff;
+        }
+        #container{
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        
+    </style>
+    <body>
+        <h1>Sudoku</h1>
+        <hr>
+        <div id="container">
+            <table id="board">
+                <tbody>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <br>
+        <button id="check">Start</button>
+    </body>
+</html>

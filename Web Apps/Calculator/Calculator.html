@@ -1,0 +1,943 @@
+<!--ONLINE CALCULATOR written in HTML, CSS, and Javascript-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Calculator</title>
+        <!--JQUERY AND BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!--FUNCTIONS-->
+        <script>
+            let consec_percent = false
+            let temp_holder = ""
+            let num1 = 0
+            let num2  = 0
+            var recent_axn = []
+            let illegal = false
+            var consec = 0
+            var consec_eq = false
+            let consec_exop = false
+            let temp_op_holder = ""
+            let temp_base = ""
+            let num_base = ""
+            /*ACTION CONSTANTS*/
+            const OP = 0
+            const IP = 1
+            const EQ = 2
+            const EX = 3
+            const FL = 4
+            /*OPERATOR CONSTANT*/
+            let NULL = -1
+            let ADD = 0
+            let SUB = 1
+            let MUL = 2
+            let DIV = 3
+            
+            var key = null
+            var op = NULL
+            let isFloat = false
+            let operatorKeys = ["+", "-", "*", "/", "="]
+            $(document).ready(function(){
+                $("#live_feed").keydown(function(event){
+                    key = event.key
+                })
+                /*LIVE FEED ONINPUT BEHAVIOR*/
+                $("#live_feed").on('input', function(){
+                    var inpOP = false
+                    
+                    if(!($(this).val() == '.' || !isNaN($(this).val()))){
+                        $(this).val($.trim($(this).val().slice(0, -1)))    
+                    }
+
+                    if(recent_axn[recent_axn.length - 1] == EQ){
+                        $(this).val($.trim($(this).val().charAt(($(this).val()).length - 1)))
+                        $("#nonlive_feed").html("&#160")
+                        op = NULL
+                        num1 = num2 = consec = 0
+                    }
+
+                    if(operatorKeys.includes(key)){
+                        inpOP = true
+                        switch (key) {
+                            case "+":
+                                addFX()
+                                break;
+                            case "-":
+                                subFX()
+                                break;
+                            case "*":
+                                mulFX()
+                                break;
+                            case "/":
+                                divFX()
+                                break;
+                            case "=":
+                                eqFX()
+                                break;
+                            default:
+                                break;
+                        }
+                        isFloat = false
+                        
+                        if(consec_eq && key != "=") consec_eq = false
+                        temp_op_holder = $("#nonlive_feed").html()
+                    }
+                    
+                    if(!($(this).val() == '') && ($(this).val()).charAt(0) == '0' && !(($(this).val()).charAt(1) == '.')){
+                        $(this).val($.trim($(this).val().slice(1, ($(this).val()).length)))
+                        
+                    }
+                    
+                    
+                    if($(this).val().charAt($(this).val().length - 1) == '.'){
+                        if(key == "Backspace" && isFloat) isFloat = false
+                        else{
+                            if(recent_axn[recent_axn.length - 1] == EQ || recent_axn[recent_axn.length - 1] == OP) $(this).val("0.") 
+                            isFloat = true
+                            if(recent_axn[recent_axn.length - 1] == EQ) $("#nonlive_feed").html("&#160")
+                            if(recent_axn.length < 5) recent_axn.push(FL)
+                            else{
+                                recent_axn.shift()
+                                recent_axn.push(FL)
+                            }
+                        }
+                    }
+
+                    
+
+                    if(illegal == true){
+                        enableButtons()
+                        $(this).val('')
+                        $("#nonlive_feed").html("&#160")
+                        num1 = num2 = consec = 0
+                        consec_percent = false
+                        temp_holder = ""
+                        op = NULL
+                        consec_exop = false
+                        consec_eq = false
+                        num_base = ""
+                        temp_base = ""
+                        isFloat = false
+                        illegal = false
+                    }
+
+                    if(recent_axn[recent_axn.length - 1] == OP || recent_axn[recent_axn.length - 1] == EX){
+                        if(!inpOP) $(this).val($.trim($(this).val().charAt(($(this).val()).length - 1)))
+                    }
+
+                    if(recent_axn[recent_axn.length - 1] == EQ){
+                        if(key == '.'){
+                            $(this).val("0.")
+                            $("#nonlive_feed").html("&#160")
+                            num2 = 0
+                            op = NULL
+                            if(recent_axn.length < 5) recent_axn.push(FL)
+                            else{
+                                recent_axn.shift()
+                                recent_axn.push(FL)
+                            }
+                        }                    
+                    }
+                    
+                    if(!isFloat && !inpOP){
+                        if(recent_axn[recent_axn.length - 1] != IP){
+                            if(recent_axn.length < 5) recent_axn.push(IP)
+                            else{
+                                recent_axn.shift()
+                                recent_axn.push(IP)
+                            }
+                        }
+                    }
+                    
+                    if($(this).val() == ''){
+                        $(this).val(0)
+                        isFloat = false
+                    } 
+                    
+                })
+                /*NUMPAD ON-CLICK F(X)*/
+                $(".numpad").click(function(){
+                    if(illegal == true){ 
+                        enableButtons()
+                        $("#live_feed").val('')
+                        $("#nonlive_feed").html("&#160")
+                        num1 = num2 = consec = 0
+                        op = NULL
+                        consec_percent = false
+                        temp_holder = ""
+                        consec_exop = false
+                        consec_eq = false
+                        num_base = ""
+                        temp_base = ""
+                        isFloat = false
+                        illegal = false
+                    }
+
+                    if(recent_axn[recent_axn.length - 1] == OP || recent_axn[recent_axn.length - 1] == EX){
+                        $("#live_feed").val("0")
+                    }
+                    
+                    if(recent_axn[recent_axn.length - 1] == EQ){
+                        isFloat = false
+                        $("#live_feed").val("0")
+                        $("#nonlive_feed").html("&#160")
+                        op = NULL
+                        num1 = num2 = consec = 0
+                    }
+
+                    if(recent_axn[recent_axn.length - 1] != IP){
+                        if(recent_axn.length < 5) recent_axn.push(IP)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(IP)
+                        }
+                    }     
+                })
+                $("#one").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("1");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "1")
+                    }
+                })
+                $("#two").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("2");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "2")
+                    }
+                })
+                $("#three").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("3");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "3")
+                    }
+                })
+                $("#four").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("4");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "4")
+                    }
+                })
+                $("#five").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("5");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "5")
+                    }
+                })
+                $("#six").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("6");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "6")
+                    }
+                })
+                $("#seven").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("7");
+                    }
+                    else{
+                        $("#live_feed").val( $("#live_feed").val() + "7")
+                    }
+                })
+                $("#eight").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("8");
+                    }
+                    else{
+                        $("#live_feed").val($("#live_feed").val() + "8")
+                    }
+                })
+                $("#nine").click(function() {
+                    if($("#live_feed").val() == "0"){
+                        $("#live_feed").val("9");
+                    }
+                    else{
+                        $("#live_feed").val($("#live_feed").val() + "9")
+                    }
+                })
+                $("#zero").click(function() {
+                    if($("#live_feed").val() != "0"){
+                        $("#live_feed").val( $("#live_feed").val() + "0")
+                    }
+                })
+                /*OPSPAD ON-CLICK F(X)*/
+
+                $("#add").click(function(){
+                    addFX()
+                })
+                
+                $("#subtract").click(function(){  
+                    subFX()
+                })
+                $("#multiply").click(function(){
+                    mulFX()    
+                })
+                $("#divide").click(function(){
+                    divFX()
+                })
+                
+                $(".opspad").click(function(){
+                    isFloat = false
+                    if(consec_eq) consec_eq = false
+                    temp_op_holder = $("#nonlive_feed").html()
+
+               })
+                /*EQUALS ON-CLICK F(X)*/
+                
+                $("#equals").click(function(){
+                    eqFX()   
+                })
+                /*UTILPAD ON-CLICK F(X)*/
+                $("#backspace").click(function(){
+                    if($("#live_feed").val().charAt($("#live_feed").val().length - 1) == '.') isFloat = false
+                    $("#live_feed").val($.trim($("#live_feed").val().slice(0, -1)))
+                    if($("#live_feed").val() == '') $("#live_feed").val(0)
+                })
+                $("#ce").click(function(){
+                    if(illegal){
+                         enableButtons()
+                         illegal = false
+                    }
+                    $("#live_feed").val(0)
+                    if(recent_axn[recent_axn.length - 1] == EQ){
+                        $("#nonlive_feed").html("&#160")
+                        num1 = 0
+                        num2 = 0
+                        consec = 0
+                        isFloat = false
+                        consec_percent = false
+                        temp_holder = ""
+                        consec_exop = false
+                        num_base = ""
+                        temp_base = ""
+                        op = NULL
+                    }
+                })
+                $("#c").click(function(){
+                    if(illegal){
+                         enableButtons()
+                         illegal = false
+                    }
+                    num1 = 0
+                    num2 = 0
+                    consec = 0
+                    isFloat = false
+                    consec_eq = false
+                    consec_percent = false
+                    temp_holder = ""
+                    consec_exop = false
+                    num_base = ""
+                    temp_base = ""
+                    op = NULL
+                    $("#live_feed").val(0)
+                    $("#nonlive_feed").html("&#160") 
+                })
+                /*OTHER ON-CLICK F(X)*/
+                $("#decimal").click(function(){
+                    if(!isFloat){
+                        if(recent_axn[recent_axn.length - 1] == IP) $("#live_feed").val($("#live_feed").val() + ".")
+                        else $("#live_feed").val("0.")
+                        isFloat = true
+                        if(recent_axn.length < 5) recent_axn.push(FL)
+                            else{
+                                recent_axn.shift()
+                                recent_axn.push(FL)
+                            }
+                    }
+                    else{
+                        if(recent_axn[recent_axn.length - 1] == EQ){
+                            $("#live_feed").val("0.")
+
+                            if(recent_axn.length < 5) recent_axn.push(FL)
+                            else{
+                                recent_axn.shift()
+                                recent_axn.push(FL)
+                            }
+                        }
+                    }
+                })
+                $("#negate").click(function(){
+                    $("#live_feed").val($("#live_feed").val() * -1)
+                })
+
+                $("#squared").click(function(){
+                    if(recent_axn[recent_axn.length - 1] == EQ || (recent_axn.length == 1 && recent_axn[recent_axn.length - 1] == EX) || 
+                    recent_axn[recent_axn.length - 1] == EX) $("#nonlive_feed").html("&#160")
+                    if(!consec_exop){
+                        temp_base = $("#nonlive_feed").html()
+                        num_base = "sqr(" + $("#live_feed").val() + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                        consec_exop = true
+                    }
+                    else{
+                        num_base = "sqr(" + num_base + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                    }
+                    $("#live_feed").val($("#live_feed").val() * $("#live_feed").val())
+                    if(recent_axn.length < 5) recent_axn.push(EX)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(EX)
+                        }
+                })
+                $("#square_root").click(function(){
+                    let temp = $("#nonlive_feed").html()
+                    if(recent_axn[recent_axn.length - 1] == EQ || (recent_axn.length == 1 && recent_axn[recent_axn.length - 1] == EX) || 
+                    recent_axn[recent_axn.length - 1] == EX) $("#nonlive_feed").html("&#160")
+                    if(!consec_exop){
+                        temp_base = $("#nonlive_feed").html()
+                        num_base = "&#8730(" + $("#live_feed").val() + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                        consec_exop = true
+                    }
+                    else{
+                        num_base = "&#8730(" + num_base + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                    }
+                    
+                    if($("#live_feed").val() < 0){
+                        $("#live_feed").val("INVALID INPUT")
+                        illegal = true
+                        disableButtons()
+                    }
+                    else $("#live_feed").val(Math.sqrt($("#live_feed").val()))
+                    if(!illegal){
+                        if(recent_axn.length < 5) recent_axn.push(EX)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(EX)
+                        }
+                    }
+                })
+
+                $("#percent").click(function(){
+                    if(op == NULL){
+                        $("#live_feed").val(0)
+                        $("#nonlive_feed").html("0")
+                    }
+                    else{
+                        if(!consec_percent){
+                            temp_holder = $("#nonlive_feed").html()
+                            temp_base = temp_holder
+                            $("#live_feed").val(num1 * $("#live_feed").val() / 100)
+                            if(recent_axn[recent_axn.length - 1] == EX) $("#nonlive_feed").html(temp_op_holder + $("#live_feed").val())
+                            else $("#nonlive_feed").html($("#nonlive_feed").html() + $("#live_feed").val())
+                            num_base = $("#live_feed").val()
+                            consec_percent = true
+                            consec_exop = true
+                        }
+                        else {
+                            $("#live_feed").val(num1 * $("#live_feed").val() / 100)
+                            $("#nonlive_feed").html(temp_holder + $("#live_feed").val())
+                        }
+                    }
+                    if(recent_axn.length < 5) recent_axn.push(EX)
+                    else{
+                        recent_axn.shift()
+                        recent_axn.push(EX)
+                    }
+                })
+                $("#one_over_x").click(function(){
+                    if(recent_axn[recent_axn.length - 1] == EQ || (recent_axn.length == 1 && recent_axn[recent_axn.length - 1] == EX) || 
+                    recent_axn[recent_axn.length - 1] == EX) $("#nonlive_feed").html("&#160")
+                    if(!consec_exop){
+                        temp_base = $("#nonlive_feed").html()
+                        num_base = "1/(" + $("#live_feed").val() + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                        consec_exop = true
+                    }
+                    else{
+                        num_base = "1/(" + num_base + ")"
+                        $("#nonlive_feed").html(temp_base + num_base)
+                    }
+                    if($("#live_feed").val() == 0){
+                        $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                        illegal = true
+                        disableButtons()
+                    }
+                    else $("#live_feed").val(1 / $("#live_feed").val())
+                    if(!illegal){
+                        if(recent_axn.length < 5) recent_axn.push(EX)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(EX)
+                        }
+                    }
+                })
+                /*MEMPAD ON-CLICK F(X)*/
+                let memory_stack = []
+
+                $("#memstore").click(function(){
+                    memory_stack.push(Number($("#live_feed").val()))
+                })
+                $("#memclear").click(function(){
+                    memory_stack = []
+                })
+                $("#memrecall").click(function(){
+                    $("#live_feed").val(memory_stack[memory_stack.length - 1])
+                })
+                $("#memadd").click(function(){
+                    if(memory_stack.length < 1) memory_stack.push(Number($("#live_feed").val()))
+                    else{
+                        memory_stack[memory_stack.length - 1] = Number($("#live_feed").val()) + memory_stack[memory_stack.length - 1]
+                    }
+                })
+                $("#memsub").click(function(){
+                    if(memory_stack.length < 1) memory_stack.push(-1 * Number($("#live_feed").val()))
+                    else{
+                        memory_stack[memory_stack.length - 1] -= Number($("#live_feed").val())
+                    }
+                })
+                $(".mempad").click(function(){
+                    console.log(memory_stack)
+                    if(recent_axn.length < 5) recent_axn.push(EQ)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(EQ)
+                        }
+                })
+            });
+           /*HELPER F(X)s*/
+           function doOperation(x, y, operation){
+               if(operation == ADD) return (Number(x) + Number(y)).toString()
+               else if(operation == SUB) return (Number(x) - Number(y)).toString()
+               else if(operation == MUL) return (Number(x) * Number(y)).toString()
+               else if(operation == DIV) return (Number(x) / Number(y)).toString()
+           }
+
+           function oneDecimalOnly(x) {
+               var already = false
+               for(var i = 0; i < x.length; i++){
+                   if(x.charAt(i) == '.'){
+                       if(already) return false
+                       else already = true
+                   }
+               }
+               return already
+           }
+
+           function disableButtons() {
+               $('.extra').prop('disabled', true)
+               $('.opspad').prop('disabled', true)
+           }
+
+           function enableButtons() {
+            $('.extra').prop('disabled', false)
+               $('.opspad').prop('disabled', false)
+           }
+
+           function addFX(){
+            var done = false
+                    if(recent_axn[recent_axn.length - 1] != OP && recent_axn[recent_axn.length - 1] != EQ){
+                        num2 = Number($("#live_feed").val())
+                        
+                        if(op != ADD && consec != 0) {
+                            if(num2 == 0 && op == DIV){
+                                if(num1 == 0) $("#live_feed").val("RESULT IS UNDEFINED")
+                                else $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                                illegal = true
+                                disableButtons()
+                            }
+                            else num1 = Number(doOperation(num1, num2, op))
+                        }
+                        else num1 = Number(num1) + num2
+                        if(!illegal){
+                            $("#live_feed").val(num1)
+                            op = ADD
+                            num2 = 0
+                            done = true
+                            
+                            if(recent_axn[recent_axn.length - 1] == EX && consec < 1) $("#nonlive_feed").html($("#nonlive_feed").html() + "&#43")
+                            else $("#nonlive_feed").html($("#live_feed").val() + "&#43")
+                            consec++
+                        }
+                    }
+                    else{
+                        op = ADD
+                        $("#nonlive_feed").html($("#live_feed").val() + "&#43")
+                        done = true
+                    } 
+                    
+                    
+                    if(done){
+                        if(recent_axn.length < 5) recent_axn.push(OP)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(OP)
+                        }
+                    }
+                    
+                    
+           }
+
+           function subFX(){
+            var done = false
+                    if(recent_axn[recent_axn.length - 1] != OP && recent_axn[recent_axn.length - 1] != EQ){
+                        num2 = Number($("#live_feed").val())
+                        
+                        if(op != SUB && consec != 0) {
+                            if(num2 == 0 && op == DIV){
+                                if(num1 == 0) $("#live_feed").val("RESULT IS UNDEFINED")
+                                else $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                                illegal = true
+                                disableButtons()
+                            }
+                            else num1 = Number(doOperation(num1, num2, op))
+                        }
+                        else{
+                            if(consec < 1) num1 = num2 - Number(num1)
+                            else num1 = Number(num1) - num2
+                        }
+                        if(!illegal){
+                            $("#live_feed").val(num1)
+                            op = SUB
+                            num2 = 0
+                            done = true
+                            
+                            if(recent_axn[recent_axn.length - 1] == EX && consec < 1) $("#nonlive_feed").html($("#nonlive_feed").html() + "&#8722")
+                            else $("#nonlive_feed").html($("#live_feed").val() + "&#8722")
+                            consec++
+                        }
+                    }
+                    else{
+                        op = SUB
+                        $("#nonlive_feed").html($("#live_feed").val() + "&#8722")
+                        done = true
+                        
+                    }
+                    
+                    if(done){
+                        if(recent_axn.length < 5) recent_axn.push(OP)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(OP)
+                        }
+                    }
+
+                    
+           }
+
+           function mulFX(){
+            var done = false
+                    if(recent_axn[recent_axn.length - 1] != OP && recent_axn[recent_axn.length - 1] != EQ){
+                        if(consec < 1) num1 = 1
+                        num2 = Number($("#live_feed").val())
+                        if(op != MUL && consec != 0) {
+                            if(num2 == 0 && op == DIV){
+                                if(num1 == 0) $("#live_feed").val("RESULT IS UNDEFINED")
+                                else $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                                illegal = true
+                                disableButtons()
+                            }
+                            else num1 = Number(doOperation(num1, num2, op))
+                        }
+                        else num1 = Number(num1) * num2
+                        if(!illegal){
+                            $("#live_feed").val(num1)
+                            op = MUL
+                            num2 = 0
+                            done = true
+                            
+                            if(recent_axn[recent_axn.length - 1] == EX && consec < 1) $("#nonlive_feed").html($("#nonlive_feed").html() + "&#215")
+                            else $("#nonlive_feed").html($("#live_feed").val() + "&#215")
+                            consec++
+                        }
+                    }
+                    else{
+                        op = MUL
+                        $("#nonlive_feed").html($("#live_feed").val() + "&#215")
+                        done = true
+                    }
+                    
+                    if(done){
+                        if(recent_axn.length < 5) recent_axn.push(OP)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(OP)
+                        }
+                    }
+
+                    
+           }
+
+           function divFX(){
+            var done = false
+                    if(recent_axn[recent_axn.length - 1] != OP && recent_axn[recent_axn.length - 1] != EQ){
+                        if(consec < 1) num1 = 1
+                        num2 = Number($("#live_feed").val())
+                        if(op != DIV && consec != 0) {
+                            num1 = Number(doOperation(num1, num2, op))
+                        }
+                        else {
+                            if(consec < 1) num1 = num2 / Number(num1)
+                            else {
+                                if(num2 == 0){
+                                    if(num1 == 0) $("#live_feed").val("RESULT IS UNDEFINED")
+                                    else $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                                    illegal = true
+                                    disableButtons()
+                                }
+                                else num1 = Number(num1) / num2
+                            }
+                        }
+                        if(!illegal){
+                            $("#live_feed").val(num1)
+                            op = DIV
+                            num2 = 0
+                            done = true
+                            
+                            if(recent_axn[recent_axn.length - 1] == EX && consec < 1) $("#nonlive_feed").html($("#nonlive_feed").html() + "&#247")
+                            else $("#nonlive_feed").html($("#live_feed").val() + "&#247")
+                            consec++
+                        }
+                    }
+                    else{
+                        op = DIV
+                        $("#nonlive_feed").html($("#live_feed").val() + "&#247")
+                        done = true
+                    }
+                    
+                    if(done){
+                        if(recent_axn.length < 5) recent_axn.push(OP)
+                        else{
+                            recent_axn.shift()
+                            recent_axn.push(OP)
+                        }
+                    }
+
+                    
+           }
+
+           function eqFX(){
+            if(illegal){
+                        enableButtons()
+                        num1 = 0
+                        num2 = 0
+                        consec = 0
+                        isFloat = false
+                        consec_eq = false
+                        consec_percent = false
+                        temp_holder = ""
+                        consec_exop = false
+                        num_base = ""
+                        temp_base = ""
+                        op = NULL
+                        $("#live_feed").val(0)
+                        $("#nonlive_feed").html("&#160") 
+                    }
+                    else{
+                    if(recent_axn[recent_axn.length - 1] != EX && !consec_eq) $("#nonlive_feed").html($("#nonlive_feed").html() +  $("#live_feed").val() + "&#61")
+                    else if(consec_eq){
+                        switch (op) {
+                            case ADD:
+                                $("#nonlive_feed").html(num1 + "&#43;" + num2 + "&#61")
+                                break;
+                            case SUB:
+                                $("#nonlive_feed").html(num1 + "&#8722;" + num2 + "&#61")
+                                break;
+                            case MUL:
+                                $("#nonlive_feed").html(num1 + "&#215;" + num2 + "&#61")
+                                break;
+                            case DIV:
+                                $("#nonlive_feed").html(num1 + "&#247;" + num2 + "&#61")
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    if(recent_axn[recent_axn.length - 1] != EQ) num2 = $("#live_feed").val()
+                    if(num2 == "0" && op == DIV){
+                        if (num1 == "0") $("#live_feed").val("RESULT IS UNDEFINED")
+                        else $("#live_feed").val("CANNOT DIVIDE BY ZERO")
+                        illegal = true
+                        disableButtons()
+                    }
+                    else {
+                        if(op != NULL){
+                            $("#live_feed").val(doOperation(num1, num2, op))
+                            num1 = $("#live_feed").val()
+                            if(!oneDecimalOnly(num1)) isFloat = false
+                            else isFloat = true    
+                            
+                            consec_percent = false
+                            temp_holder = ""
+                            consec_exop = false
+                            num_base = ""
+                            temp_base = ""
+                            
+                            if(recent_axn[recent_axn.length - 2] == EX) $("#nonlive_feed").html($("#nonlive_feed").html() + "&#61")
+                        }
+                        
+                        if(recent_axn.length < 5){ 
+                            recent_axn.push(EQ)
+
+                        }
+                        else{
+                                recent_axn.shift()
+                                recent_axn.push(EQ)
+                        }
+                        consec_eq = true
+                    }
+                }
+           }
+           
+        </script>
+        <style>
+            /*LAYOUT AND DESIGN*/
+            table{
+                background-color: #f2f2f2;
+                margin-right: auto;
+                margin-left: auto;
+                width: 305px;  
+                
+            }
+
+            table td{
+                padding-bottom: 5px;
+                padding-left: 2.5px;
+                padding-right: 2.5px;
+            }
+
+            .feed{
+                width: 298px;
+                max-width: 298px;
+                text-align: right;
+                white-space: nowrap;
+                overflow-x: auto;
+            }
+
+            #nonlive_feed{
+                font-weight: 400;
+                font-size: medium;
+                
+            }
+
+            #live_feed{
+                border-color: transparent;
+                background-color: transparent;
+                font-weight: bold;
+                font-size: max(xx-large, 2.5vw);
+                
+            }
+
+            #live_feed:focus{
+                outline-width: 0px;
+
+            }
+
+            #input_pad td #equals{
+                background-color: #b61e51;
+                color: white;  
+            }
+
+            #input_pad td button{
+                width: 71px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 5px;
+                background-color: white;  
+            }
+
+            #mem_pad td button{
+                width: 55px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 5px;
+                background-color: #f2f2f2;
+            }
+
+            button{
+                border-color: transparent;
+            }
+
+            button:hover{
+                filter: brightness(.8);
+            }
+            
+            .calcubody thead tr #nametag{
+                border: 1px solid transparent;
+                padding-left: 2px;
+            }
+        
+        </style>
+    </head>
+
+    <body>
+        <!--COMPONENTS-->
+        <table class="calcubody">
+            <thead>
+            <tr><th id="nametag">Calculator</th></tr>
+            <tr><th class="feed" id="nonlive_feed">&#160</th></tr>
+            <tr><th><input class="feed" type="text" id="live_feed" value="0"></input></th></tr>
+            </thead>
+        <tbody>
+            <tr>
+                <table id="mem_pad">
+                    <tbody>
+                        <tr>
+                            <td><button class="mempad" id="memclear">MC</button></td>
+                            <td><button class="mempad" id="memrecall">MR</button></td>
+                            <td><button class="mempad" id="memadd">M&#43</button></td>
+                            <td><button class="mempad" id="memsub">M&#8722</button></td>
+                            <td><button class="mempad" id="memstore">MS</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tr>
+            <tr>
+                <table id="input_pad">
+                    <tbody>
+                        <tr>
+                            <td><button class="extra" id="percent">&#37;</button></td>
+                            <td><button class="utilpad" id="ce">CE</button></td>
+                            <td><button class="utilpad" id="c">C</button></td>
+                            <td><button class="utilpad" id="backspace">&#9003</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="extra" id="one_over_x"><sup>1</sup>&frasl;<sub>x</sub></button></td>
+                            <td><button class="extra" id="squared">x&#178</button></td>
+                            <td><button class="extra" id="square_root">&#8730;x</button></td>
+                            <td><button class="opspad" id="divide">&#247</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="numpad" id="seven">7</button></td>
+                            <td><button class="numpad" id="eight">8</button></td>
+                            <td><button class="numpad" id="nine">9</button></td>
+                            <td><button class="opspad" id="multiply">&#215</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="numpad" id="four">4</button></td>
+                            <td><button class="numpad" id="five">5</button></td>
+                            <td><button class="numpad" id="six">6</button></td>
+                            <td><button class="opspad" id="subtract">&#8722</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="numpad" id="one">1</button></td>
+                            <td><button class="numpad" id="two">2</button></td>
+                            <td><button class="numpad" id="three">3</button></td>
+                            <td><button class="opspad" id="add">&#43</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="extra" id="negate"><sup>&#43</sup>&frasl;<sub>&#8722</sub></button></td>
+                            <td><button class="numpad" id="zero">0</button></td>
+                            <td><button class="extra" id="decimal">&#183</button></td>
+                            <td><button class="spec" id="equals">&#61</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tr>
+            
+        </tbody>
+        </table>
+    </body>
+</html>
